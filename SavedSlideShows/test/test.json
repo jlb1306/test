@@ -1,0 +1,36 @@
+{
+    "slides": [
+        {
+            "duration": 5,
+            "image": "C:\\Users\\12564\\Documents\\NetBeansProjects\\project\\SavedSlideShows\\test\\images\\10.jpg",
+            "interval": 0,
+            "transition": "fade"
+        },
+        {
+            "duration": 5,
+            "image": "C:\\Users\\12564\\Documents\\NetBeansProjects\\project\\SavedSlideShows\\test\\images\\7.jpg",
+            "interval": 0,
+            "transition": "fade"
+        },
+        {
+            "duration": 5,
+            "image": "C:\\Users\\12564\\Documents\\NetBeansProjects\\project\\SavedSlideShows\\test\\images\\8.jpg",
+            "interval": 0,
+            "transition": "fade"
+        },
+        {
+            "duration": 5,
+            "image": "C:\\Users\\12564\\Documents\\NetBeansProjects\\project\\SavedSlideShows\\test\\images\\9.jpg",
+            "interval": 0,
+            "transition": "fade"
+        },
+        {
+            "duration": 5,
+            "image": "C:\\Users\\12564\\Documents\\NetBeansProjects\\project\\SavedSlideShows\\test\\images\\test.jpeg",
+            "interval": 0,
+            "transition": "fade"
+        }
+    ],
+    "loop": true,
+    "name": "test"
+}

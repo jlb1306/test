@@ -41,7 +41,6 @@ public class SlideshowPresenter extends javax.swing.JFrame {
             imageLabel.setIcon(new ImageIcon(img));
         } else {
             imageLabel.setIcon(null);
-            imageLabel.setText("No slides or invalid index.");
         }
     }
 
@@ -66,14 +65,22 @@ public class SlideshowPresenter extends javax.swing.JFrame {
         }
 
         JSONArray slidesArray = slideshowJson.getJSONArray("slides");
-        int duration = slideshowJson.getInt("duration");
-        String transition = slideshowJson.getString("transition");
-        int interval = slideshowJson.getInt("interval");
+        for (int i = 0; i < slidesArray.length(); i++) {
+            JSONObject slideJson = slidesArray.getJSONObject(i);
+            String imagePath = slideJson.getString("image");
+            int duration = slideJson.getInt("duration");
+            String transition = slideJson.getString("transition");
+            int interval = slideJson.optInt("interval", 0);
 
-    for (int i = 0; i < slidesArray.length(); i++) {
-        String imagePath = slidesArray.getString(i);
-        slides.add(new Slide(imagePath, duration, transition, interval));
-    }
+            // Print slide-level settings for testing
+            System.out.println("\n  Slide " + (i + 1) + ":");
+            System.out.println("    Image: " + imagePath);
+            System.out.println("    Duration: " + duration);
+            System.out.println("    Transition: " + transition);
+            System.out.println("    Interval: " + interval);
+
+            slides.add(new Slide(imagePath, duration, transition, interval));
+        }
             updateSlide();
         } catch (Exception e) {
             e.printStackTrace();

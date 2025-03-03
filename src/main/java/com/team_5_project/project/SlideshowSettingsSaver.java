@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.team_5_project.project;
 
 import org.json.JSONArray;
@@ -10,7 +14,6 @@ public class SlideshowSettingsSaver {
 
     public static void saveSettingsToJson(String filePath, String slideshowName, List<Slide> slides, String audioPath, boolean loop) {
         JSONObject slideshowJson = new JSONObject();
-
         slideshowJson.put("name", slideshowName);
         slideshowJson.put("loop", loop);
 
@@ -18,28 +21,19 @@ public class SlideshowSettingsSaver {
             slideshowJson.put("audio", audioPath);
         }
 
-        int duration = 0;
-        int interval = 0;
-        String transition = "fade";
-
-        if (!slides.isEmpty()) {
-            duration = slides.get(0).getDuration();
-            interval = slides.get(0).getInterval();
-            transition = slides.get(0).getTransition();
-        }
-
-        slideshowJson.put("duration", duration);
-        slideshowJson.put("interval", interval);
-        slideshowJson.put("transition", transition);
-
         JSONArray slidesArray = new JSONArray();
         for (Slide slide : slides) {
-            slidesArray.put(slide.getImagePath());
+            JSONObject slideJson = new JSONObject();
+            slideJson.put("image", slide.getImagePath());
+            slideJson.put("duration", slide.getDuration());
+            slideJson.put("transition", slide.getTransition());
+            slideJson.put("interval", slide.getInterval());
+            slidesArray.put(slideJson);
         }
         slideshowJson.put("slides", slidesArray);
 
         try (FileWriter fileWriter = new FileWriter(filePath)) {
-            fileWriter.write(slideshowJson.toString(4));
+            fileWriter.write(slideshowJson.toString(4)); // 4 for nice indentation
         } catch (IOException e) {
             e.printStackTrace();
         }
